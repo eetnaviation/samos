@@ -53,7 +53,7 @@ void setup() {
   pinMode(floor3pin, INPUT_PULLUP);
   pinMode(safetyPin, INPUT_PULLUP);
   Serial.println("Done.");
-  Serial.println("Define monitoring interface...");
+  Serial.println("Define SOMMS/MONITORING interface...");
   monitoring.begin(9600);
   Serial.println("Done.");
   Serial.println("Sending SAMOS Online Request Message (SORM)...");
