@@ -26,6 +26,38 @@ If a SAMOS unit detects a fault and reports it using SOMMS Standard Messaging th
 is to go to the SAMOS unit that had or has a fault present and reset it with the fault no longer present.
 This is due to safety measures so that no SAMOS reported fault goes uninvestigated.
 
+## SORM Message and Acknowledging the SORM Message
+
+The SORM Message is critical in bringing the SAMOS unit online. This does not utilize te SOMMS protocol.
+
+### Initial SORM Message from SAMOS Unit
+
+The first message a SAMOS unit sends is this:
+
+onlinereq, SAMOS Module ID (MID) (STR) , SAMOS Module Name (MNA) (STR)
+
+An example message looks like this:
+
+onlinereq,1122,testmodule
+
+This message would mean that the module called testmodule with an ID of 1122
+is requesting to be online.
+
+### SORM Message Acknowledging
+
+In order for the SAMOS Unit to become online the SORM Message must be acknowledged.
+
+This can be done like this:
+
+onlineack, SAMOS Module ID (MID) (STR) , SAMOS Module Name (MNA) (STR)
+
+An example message looks like this:
+
+onlineack,1122,testmodule
+
+This message would mean that the module called testmodule with an ID of 1122
+has been acknowledged and is now online.
+
 ## Pinouts
 
 ### SAMOS Monitoring Serial (SOMMS - SAMOS Online Monitoring Messaging System) interface pinout
