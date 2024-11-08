@@ -3,6 +3,29 @@ REOTEK Simple Appliance Monitoring OS (SAMOS) is a simple firmware for Arduino m
 to monitor simple appliances through the GPIO pins. All transmissions from the SAMOS unit are
 in serial.
 
+## SOMMS Messaging protocol
+The SOMMS (SAMOS Online Monitoring Messaging System) is used by SAMOS to communicate from the
+SAMOS unit to a connected Serial UART device.
+
+### SOMMS Standard Messaging
+When the system is at normal state and no faults are present SOMMS will send the following message
+every CPU cycle:
+SAMOS Module ID (MID) (STR) , SAMOS Module Name (MNA) (STR) , Current Position (INT) , Safety Chain Present (BOOL) , xx (Just "xx" represents no faults.)
+
+A basic message would look like this:
+1122,testmodule,3,true,xx
+This would mean that the device has a module id of 1122, is called testmodule is at position 3, the safety chain is connected (true)
+and there are no faults present (xx).
+
+When faults appear the same message is sent but instead of "xx" there is the fault code. If multiple faults are present the service recieveing
+SAMOS unit communications is responsible for tracking active faults.
+
+### Reseting SOMMS faults
+
+If a SAMOS unit detects a fault and reports it using SOMMS Standard Messaging the only way to clear the fault
+is to go to the SAMOS unit that had or has a fault present and reset it with the fault no longer present.
+This is due to safety measures so that no SAMOS reported fault goes uninvestigated.
+
 ## Pinouts
 
 ### SAMOS Monitoring Serial (SOMMS - SAMOS Online Monitoring Messaging System) interface pinout
